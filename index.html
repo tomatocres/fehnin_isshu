@@ -1,8 +1,20 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <script src="fehnin_isshu.js"></script>
+    <script>
+var app = new Vue({
+  el: '#app',
+  data: {
+    message: 'Hello Vue!'
+  }
+})
+    </script>
   </head>
-  <body onload="init()">
+  <body>
+    <div id="app">
+      {{ message }}
+    </div>
   </body>
 </html>
