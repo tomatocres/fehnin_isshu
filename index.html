@@ -22,10 +22,14 @@
 	  </div>
 	  <pre id="description" @click="click_description()">{{description}}</pre>
 	  <div id="cards">
-		  <card-text v-for="card in db_cards"  :card="card" :class="{disabled: card.isDisabled}" />
+		  <card-text v-for="card in db_cards.slice(0,MAX_CHOICE)"  :card="card" :class="{disabled: card.disabled}" />
 	  </div>
   </div>
-<script src="https://unpkg.com/vue@next"></script>
+  <!--
+	  <script src="https://unpkg.com/vue@next"></script>
+<script src="https://unpkg.com/vue@2.5.17"></script>
+  -->
+  	<script src="https://unpkg.com/vue@3.2.36/dist/vue.global.js"></script>
 <script>
 
 let db_skill=[];
@@ -281,54 +285,97 @@ db_skill.push({name:'疾風の暗器', description:`
 戦闘開始時、自身のHPが25%以上なら、速さが敵より高い時、受けた範囲奥義のダメージと、戦闘中に攻撃を受けた時のダメージを速さの差×3%軽減(最大30%)(巨影の範囲奥義を除く)、かつ、自分が与えるダメージ+5(戦闘前奥義も含む)
 `});
 
+let text_description_rule = `ルール:
+開始すると専用武器が並べられ、5秒後に始まります。
+
+専用武器の説明文に合う武器を選んでください。
+錬成可能なものは錬成後の文になります。
+（無い場合は「なし」を選んでください。）
+
+正解する、または2回間違えると次の武器に進みます。
+10回正解するとクリアです。 
+
+`
 let answers=[]
 let db_cards=[]
 let state = {newGame: true}
+let visible_chars = 0
+const MAX_CHOICE = 24
+const UNSEEN_ANSWER = 2
 
-let text_description = `
-ルール:
-タッチすると専用武器が並べられ、5秒後に始まります。
-専用武器の説明文に合う武器を選んでください。（無い場合は「なし」を選んでください。）
-正解する、または2回間違えると次の武器に進みます。
-10回正解するとクリアです。
-`
+let correct_count = 0
+let temporary_disabled = null
 
-function rand_seq(length){
+function rand_seq(length, begin=0){
 	let rands_pair = [];
 	for(let i=0; i<length; i++){
 		rands_pair.push( {id: i, val: Math.random()})
 	}
 	rands_pair.sort( (a,b)=>a.val - b.val );
-	return rands_pair.map( (x)=>x.id );
+	return rands_pair.map( (x)=>(x.id + begin) );
 }
 
-function start_game(obj){
-	obj.db_cards = [];
+function start_game(){
+	db_cards = [{name:"なし", description:"", disabled:false}];
 	let randtmp = rand_seq(db_skill.length);
-	for(let i=0; i<db_skill.length; i++){
-		obj.db_cards.push(db_skill[randtmp[i]]);
-		obj.db_cards[i].isDisabled = (Math.random()<0.5)
-		// if(i<=2){console.log(obj.db_cards)}
+	for(let i=0; i<MAX_CHOICE+UNSEEN_ANSWER-1; i++){
+		db_cards.push(db_skill[randtmp[i]]);
+		db_cards[i].disabled = false
 	}
-	answers=rand_seq(obj.db_cards.length);
+	vm.db_cards = db_cards // why this tautology is needed?
+	answers=rand_seq(MAX_CHOICE+UNSEEN_ANSWER-1, 1);
 	state.newGame = false;
-	countdown_to_start();
+	// countdown_to_start(5);
+	countdown_to_start(0);
 }
-function countdown_to_start(){
-	
-	
+
+function countdown_to_start(duration){
+	if (duration > 0){
+		vm.description = text_description_rule + "  " + duration
+		console.log(duration)
+		setTimeout(countdown_to_start, 1000, duration-1)
+	}else{
+		question()
+	}
+}
+
+function correct_answer(){
+	correct_count += 1
+	if (correct_count < 10){
+		answers.shift()
+		question()
+   	}else{
+	   	console.log("clear")
+   	}
+}
+
+function wrong_answer(clicked_card){
+   if (temporary_disabled){
+	answers.push(answers.shift())
+	question()
+	temporary_disabled.card.disabled = false
+	temporary_disabled = null
+   }else{
+	temporary_disabled = clicked_card
+	temporary_disabled.card.disabled = true
+   }
+}
+
+function question(){
+	vm.description = vm.db_cards[answers[0]].description
 }
 
 const app = Vue.createApp({
   methods: {
 	click_description(){
 		if(state.newGame){
-			start_game(this);
-			
+			start_game();
+		}else{
+			console.log("clicked but ignored");
 		}
 	}
   },
-  data() {return ({db_cards: db_cards, description: text_description})}
+  data() {return ({db_cards: db_cards, description: text_description_rule, MAX_CHOICE: MAX_CHOICE})}
 });
 app.component('card-text', {
 	props: ['card'], 
@@ -337,13 +384,30 @@ app.component('card-text', {
 		choose(name){
 			if (state.newGame){
 				start_game();
-			}else{
-
+			}else if(! this.card.disabled){
+				if (this.card.name == "なし"){
+					for(let i=1; i<MAX_CHOICE; i++){
+						if(vm.db_cards[i].description == db_cards[answers[0]].description) {
+	   						wrong_answer(this)
+	   						return;
+	   					}
+	   				}
+	   				// no "return" executed 
+					correct_answer()
+				}else{
+					if(this.card.description == db_cards[answers[0]].description) {
+						this.card.disabled = true
+						correct_answer()
+					}else{
+						wrong_answer(this)
+					}
+					
+				}
 			}
 		}
   	},
 })
-app.mount('#app');
+const vm = app.mount('#app');
 </script>
 </body>
 </html>
