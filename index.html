@@ -38,266 +38,266 @@
 <script>
 
 let db_skill=[];
-db_skill.push({name:'����̊p', description:`���`���������₷��(�����J�E���g-1)
-��������U���������A�܂��́A����2�}�X�ȓ��ɖ��������鎞�A�퓬���A�U���A�����A����A���h+5�A��Βǌ��A���A�^����_���[�W+�����̎����20%�A�󂯂�_���[�W-�����̎����20%�A(�͈͉��`������)
-�^�[���J�n���A���A�b�ȊO�̖����Ɨאڂ��Ă��Ȃ��ꍇ�A���g��ԂɂȂ�(�����łȂ��ꍇ�A���g��Ԃ�����)
-���g��ԂȂ�A�U��+2�A�����`�������A���`�ɂ��_���[�W+7�A�퓬���A�G�̉��`�����J�E���g�ϓ���+�𖳌��A�����g�̉��`�����J�E���g�ϓ���-�𖳌�
+db_skill.push({name:'絶光の角', description:`奥義が発動しやすい(発動カウント-1)
+自分から攻撃した時、または、周囲2マス以内に味方がいる時、戦闘中、攻撃、速さ、守備、魔防+5、絶対追撃、かつ、与えるダメージ+自分の守備の20%、受けるダメージ-自分の守備の20%、(範囲奥義を除く)
+ターン開始時、竜、獣以外の味方と隣接していない場合、化身状態になる(そうでない場合、化身状態を解除)
+化身状態なら、攻撃+2、かつ奥義発動時、奥義によるダメージ+7、戦闘中、敵の奥義発動カウント変動量+を無効、かつ自身の奥義発動カウント変動量-を無効
 `});  
-db_skill.push({name:'��n��_�̐���', description:`���`���������₷��(�����J�E���g-1)
-��������U���������A�܂��́A����2�}�X�ȓ��ɖ��������鎞�A�퓬���A�U���A����+6�A���A���g�̉��`�����J�E���g�ϓ���-�𖳌��A�_���[�W+�G�̍U����10%�A���A������HP��25%�ȏ�œG�̒v���U�����󂯂����A�_���[�W��HP��1�c��悤�Ɍy��(1�퓬1��̂݁B���`�ȊO�́u�G�̒v���U�����󂯂����A�_���[�W��HP��1�c��悤�Ɍy��������ʁv�Ƃ͏d�����Ȃ�)
+db_skill.push({name:'大地母神の聖書', description:`奥義が発動しやすい(発動カウント-1)
+自分から攻撃した時、または、周囲2マス以内に味方がいる時、戦闘中、攻撃、速さ+6、かつ、自身の奥義発動カウント変動量-を無効、ダメージ+敵の攻撃の10%、かつ、自分のHPが25%以上で敵の致死攻撃を受けた時、ダメージをHPが1残るように軽減(1戦闘1回のみ。奥義以外の「敵の致死攻撃を受けた時、ダメージをHPが1残るように軽減する効果」とは重複しない)
 `});  
-db_skill.push({name:'�V�n�o���̎O�p��', description:`�U��+3
-�y�Ĉړ�(�c��+1)�z�𔭓��\
-��������U���������A�܂��́A����2�}�X�ȓ��ɖ��������鎞�A�퓬���A�U���A�����A����A���h+5�A�������^����_���[�W+���h��20%�A���퓬���A�ŏ��Ɏ󂯂��U���̃_���[�W��40%�y��
+db_skill.push({name:'天馬姉妹の三角槍', description:`攻撃+3
+【再移動(残り+1)】を発動可能
+自分から攻撃した時、または、周囲2マス以内に味方がいる時、戦闘中、攻撃、速さ、守備、魔防+5、自分が与えるダメージ+魔防の20%、かつ戦闘中、最初に受けた攻撃のダメージを40%軽減
 `});  
-db_skill.push({name:'�i���̃u���X', description:`�U��+3
-�˒�2�̓G�ɁA�G�̎�������h�̒Ⴂ���Ń_���[�W�v�Z
-�����A�ړ��n�⏕(�̓�����A�����߂��A��荞�ݓ�)���g�p�������A�܂��͎����Ɏg�p���ꂽ���A�ړ���̎����Ƒ���̎���2�}�X�̖�����HP10�񕜁A���̌�A�y�s���ȏ�Ԉُ�z������(�����Ƒ�����܂ށB�����Ƒ���͈̔͂��d�����Ă��Ă����ʂ͏d�����Ȃ�)
-�퓬�J�n���A���g��HP��25%�ȏ�Ȃ�A�퓬���A�U���A�����A������h+5�A��Βǌ�
+db_skill.push({name:'永生のブレス', description:`攻撃+3
+射程2の敵に、敵の守備か魔防の低い方でダメージ計算
+応援、移動系補助(体当たり、引き戻し、回り込み等)を使用した時、または自分に使用された時、移動後の自分と相手の周囲2マスの味方のHP10回復、その後、【不利な状態異常】を解除(自分と相手を含む。自分と相手の範囲が重複していても効果は重複しない)
+戦闘開始時、自身のHPが25%以上なら、戦闘中、攻撃、速さ、守備魔防+5、絶対追撃
 `});  
-db_skill.push({name:'�[���D�����̐���', description:`���`���������₷��(�����J�E���g-1)
-��������U���������A�܂��́A����2�}�X�ȓ��ɖ��������鎞�A�퓬���A�U���A�����A����A���h+5�A���g���󂯂Ă���ǌ��s�𖳌��A���A�G�̉��`�����J�E���g�ϓ���-1(���n�����ʕ������A�ő�l�K�p)�A���퓬���ɍU�����Ă���΁A�퓬��ɓG�ƁA���̎���2�}�X�ȓ��̓G�Ɂy�L�����Z���z��t�^
+db_skill.push({name:'深き優しさの聖器', description:`奥義が発動しやすい(発動カウント-1)
+自分から攻撃した時、または、周囲2マス以内に味方がいる時、戦闘中、攻撃、速さ、守備、魔防+5、自身が受けている追撃不可を無効、かつ、敵の奥義発動カウント変動量-1(同系統効果複数時、最大値適用)、かつ戦闘中に攻撃していれば、戦闘後に敵と、その周囲2マス以内の敵に【キャンセル】を付与
 `});  
-db_skill.push({name:'�ĕX�̃u���X', description:`�˒�2�̓G�ɁA�G�̎�������h�̒Ⴂ���Ń_���[�W�v�Z
-���`���������₷��(�����J�E���g-1)
-��������U���������A�܂��́A����2�}�X�ȓ��ɖ��������鎞�A�퓬���A�U���A����+6�A�G�̐�Βǌ��𖳌��A���A�����̒ǌ��s�𖳌��A���A�������G���5�ȏ㍂�����A�G�͔����s��
+db_skill.push({name:'夏氷のブレス', description:`射程2の敵に、敵の守備か魔防の低い方でダメージ計算
+奥義が発動しやすい(発動カウント-1)
+自分から攻撃した時、または、周囲2マス以内に味方がいる時、戦闘中、攻撃、速さ+6、敵の絶対追撃を無効、かつ、自分の追撃不可を無効、かつ、速さが敵より5以上高い時、敵は反撃不可
 `});  
-db_skill.push({name:'��_�ƋY�_�̋C����', description:`���`���������₷��(�����J�E���g-1)
-�^�[���J�n���A����2�}�X�ȓ��ɖ��������鎞�A���g�̉��`�����J�E���g-1
-�^�[���J�n���A�G�R���ōł��������Ⴂ�G�ƁA���̎���2�}�X�ȓ��ɂ���G�Ɂy��_�I��z�y��]�z��t�^(�G�̎���s���I�����܂�)
-�퓬�J�n���A���g��HP��25%�ȏ�Ȃ�A�U��+6�A�G�̍U��-6
-�y��_�I��z�G����󂯂��U���̃_���[�W+10
+db_skill.push({name:'戦神と戯神の気紛れ', description:`奥義が発動しやすい(発動カウント-1)
+ターン開始時、周囲2マス以内に味方がいる時、自身の奥義発動カウント-1
+ターン開始時、敵軍内で最も速さが低い敵と、その周囲2マス以内にいる敵に【弱点露呈】【空転】を付与(敵の次回行動終了時まで)
+戦闘開始時、自身のHPが25%以上なら、攻撃+6、敵の攻撃-6
+【弱点露呈】敵から受けた攻撃のダメージ+10
 `});  
-db_skill.push({name:'�Z�D���̌���', description:`
-�퓬�J�n���A���g��HP��25%�ȏ�Ȃ�A�퓬���A�G�̍U���A���-5�A�G�͒ǌ��s��
-�G����U�����ꂽ���A�܂��́A�퓬�J�n���A�G��HP��75%�ȏ�̎��A�퓬���A�G�̍U���A���-5�A���A�퓬���A�G�̍U�����A�퓬�J�n���̓G�̍U���~�Z%����
-�Z�̒l�́A�퓬�J�n���̍ő�HP�A�U���A�����A����A���h�̂����A�������G���1�ȏ㍂����ސ��~5+10
+db_skill.push({name:'鎧好きの堅槍', description:`
+戦闘開始時、自身のHPが25%以上なら、戦闘中、敵の攻撃、守備-5、敵は追撃不可
+敵から攻撃された時、または、戦闘開始時、敵のHPが75%以上の時、戦闘中、敵の攻撃、守備-5、かつ、戦闘中、敵の攻撃が、戦闘開始時の敵の攻撃×〇%減少
+〇の値は、戦闘開始時の最大HP、攻撃、速さ、守備、魔防のうち、自分が敵より1以上高い種類数×5+10
 `});  
-db_skill.push({name:'�����x�����F���N', description:`���`���������₷��(�����J�E���g-1)
-�^�[���J�n���A����2�}�X�ȓ��ɖ�����2�l�ȏア�鎞�A�y���؂�E�ǌ����ʁz�A�u�퓬���A���`�����J�E���g�ϓ���+1(���n�����ʕ������A�ő�l�K�p)�v��t�^(1�^�[��)
-��������U���������A�܂��́A����2�}�X�ȓ��ɖ��������鎞�A�퓬���A�U���A�����A����A���h+5�A�퓬��A7��
+db_skill.push({name:'黒斧ベルヴェルク', description:`奥義が発動しやすい(発動カウント-1)
+ターン開始時、周囲2マス以内に味方が2人以上いる時、【見切り・追撃効果】、「戦闘中、奥義発動カウント変動量+1(同系統効果複数時、最大値適用)」を付与(1ターン)
+自分から攻撃した時、または、周囲2マス以内に味方がいる時、戦闘中、攻撃、速さ、守備、魔防+5、戦闘後、7回復
 `});  
-db_skill.push({name:'���g�ギ���̟͂D', description:`�y�Ĉړ�(�c��+1)�z�𔭓��\
-���`���������₷��(�����J�E���g-1)
-�퓬�J�n���A���g��HP��25%�ȏ�Ȃ�A�퓬���A�U���A�����A����A���h+5�A���G���y�L���ȏ�ԁz�̎��A�܂��͑������G���10�ȏ㍂�����A2��U��
+db_skill.push({name:'蒼波薙ぐ剛力の櫂', description:`【再移動(残り+1)】を発動可能
+奥義が発動しやすい(発動カウント-1)
+戦闘開始時、自身のHPが25%以上なら、戦闘中、攻撃、速さ、守備、魔防+5、かつ敵が【有利な状態】の時、または速さが敵より10以上高い時、2回攻撃
 `});  
-db_skill.push({name:'�����̌��̎�', description:`�d���A�R�n����
-���`���������₷��(�����J�E���g-1)
-��������U���������A�܂��́A����2�}�X�ȓ��ɖ��������鎞�A�퓬���A�U���A���h+6�A���A�����̖��h-�G�̖��h�̒l�ɂ���ĈقȂ���ʂ𔭓�(5�ȏ�14�ȉ��Ȃ�A��������U���������A�����͐�Βǌ��E15�ȏ�Ȃ�A��������U���������A2��U��)
+db_skill.push({name:'純白の月の雫', description:`重装、騎馬特効
+奥義が発動しやすい(発動カウント-1)
+自分から攻撃した時、または、周囲2マス以内に味方がいる時、戦闘中、攻撃、魔防+6、かつ、自分の魔防-敵の魔防の値によって異なる効果を発動(5以上14以下なら、自分から攻撃した時、自分は絶対追撃・15以上なら、自分から攻撃した時、2回攻撃)
 `});  
-db_skill.push({name:'�^�Ă̗��̕X�َq', description:`�y�Ĉړ�(�c��)�z�𔭓��\
-���`���������₷��(�����J�E���g-1)
-��������U���������A�܂��́A����2�}�X�ȓ��ɖ��������鎞�A�퓬���A�U���A����+6�A���A��������U���������A�������󂯂Ă��鋭���ƓG���󂯂Ă���㉻�̍��v�l��12�ȏ�Ȃ�A2��U��
-�y�Ê�(7)�z����
+db_skill.push({name:'真夏の涼の氷菓子', description:`【再移動(残り)】を発動可能
+奥義が発動しやすい(発動カウント-1)
+自分から攻撃した時、または、周囲2マス以内に味方がいる時、戦闘中、攻撃、速さ+6、かつ、自分から攻撃した時、自分が受けている強化と敵が受けている弱化の合計値が12以上なら、2回攻撃
+【暗器(7)】効果
 `});  
-db_skill.push({name:'���x�Ȃ�󏗂̑�P', description:`���`���������₷��(�����J�E���g1)
-�퓬�J�n���A���g��HP��25%�ȏ�Ȃ�A�퓬���A�U��+6�A�G�̍U��-6�A�ŏ��Ɏ󂯂��U���̃_���[�W��40%�y���A���A���g�𒆐S�Ƃ����c3��Ɖ�3��̓G�̐l�������l�ȏ�Ȃ�A2��U��
-���́A�G�R�̑����ɂ��ω�(�G�R�̑������E6�l�ȏ�Ȃ�A3�A �E3~5�l�Ȃ�A2�A�E2�l�ȉ��Ȃ�A1)
+db_skill.push({name:'強靭なる烈女の大傘', description:`奥義が発動しやすい(発動カウント1)
+戦闘開始時、自身のHPが25%以上なら、戦闘中、攻撃+6、敵の攻撃-6、最初に受けた攻撃のダメージを40%軽減、かつ、自身を中心とした縦3列と横3列の敵の人数が○人以上なら、2回攻撃
+○は、敵軍の総数により変化(敵軍の総数が・6人以上なら、3、 ・3~5人なら、2、・2人以下なら、1)
 `});  
-db_skill.push({name:'�푢�t�B���u��', description:`�U��+3
-����3�}�X�ȓ��ɖ��������鎞�A�퓬���A�G�̍U���A���h-8�A���G�͒ǌ��s�A���퓬���A����3�}�X�ȓ��ɂ��閡���̂����A�U���Ɩ��h�̋����̍��v�l���ł����������̍U���Ɩ��h�̋����̍��v�l���A���g�̍U���ɉ��Z
-����3�}�X�ȓ��ɖ����������ԂōU���������A�퓬��A�ł��߂�������15�_���[�W
+db_skill.push({name:'被造フィンブル', description:`攻撃+3
+周囲3マス以内に味方がいる時、戦闘中、敵の攻撃、魔防-8、かつ敵は追撃不可、かつ戦闘中、周囲3マス以内にいる味方のうち、攻撃と魔防の強化の合計値が最も高い味方の攻撃と魔防の強化の合計値を、自身の攻撃に加算
+周囲3マス以内に味方がいる状態で攻撃した時、戦闘後、最も近い味方に15ダメージ
 `});  
-db_skill.push({name:'�����q�҂̕ɑ�', description:`�y�Ĉړ�(�c��+1)�z�𔭓��\�U��+3
-��������U���������A�܂��͎���2�}�X�ȓ��ɖ��������鎞�A�퓬���A�U���A����+6
-�������g�p�������A�����̍U���A����+6(1�^�[��)�A���̌�A�������s���\�ɂ���(1�^�[����1��̂�)
+db_skill.push({name:'お調子者の碧槍', description:`【再移動(残り+1)】を発動可能攻撃+3
+自分から攻撃した時、または周囲2マス以内に味方がいる時、戦闘中、攻撃、速さ+6
+応援を使用した時、自分の攻撃、速さ+6(1ターン)、その後、自分を行動可能にする(1ターンに1回のみ)
 `});  
-db_skill.push({name:'�F�̕��������|', description:`��s����
-���`���������₷��(�����J�E���g-1)
-���g��HP��60%�ȉ��̎��A�����́A���g�̎���1�}�X�ȓ��Ɉړ��\
-����2�}�X�ȓ��̖����́A���g�̎���2�}�X�ȓ��Ɉړ��\����3�}�X�ȓ��ɖ��������鎞�A�퓬���A�U���A����+6�A���A�_���[�W+������15%
+db_skill.push({name:'友の風舞う翼弓', description:`飛行特効
+奥義が発動しやすい(発動カウント-1)
+自身のHPが60%以下の時、味方は、自身の周囲1マス以内に移動可能
+周囲2マス以内の味方は、自身の周囲2マス以内に移動可能周囲3マス以内に味方がいる時、戦闘中、攻撃、速さ+6、かつ、ダメージ+速さの15%
 `});  
-db_skill.push({name:'���_�̃u���X', description:`�˒�2�̓G�ɁA�G�̎�������h�̒Ⴂ���Ń_���[�W�v�Z
-���`���������₷��(�����J�E���g-1)
-��������U���������A�܂��́A����2�}�X�ȓ��ɖ��������鎞�A�퓬���A�G�̍U���A�����A����A���h-5�A�����͐�Βǌ��A���A�󂯂��͈͉��`�̃_���[�W�ƁA�퓬���ɍU�����󂯂����̃_���[�W��30%�y��(���e�͈͉̔��`������)
+db_skill.push({name:'竜神のブレス', description:`射程2の敵に、敵の守備か魔防の低い方でダメージ計算
+奥義が発動しやすい(発動カウント-1)
+自分から攻撃した時、または、周囲2マス以内に味方がいる時、戦闘中、敵の攻撃、速さ、守備、魔防-5、自分は絶対追撃、かつ、受けた範囲奥義のダメージと、戦闘中に攻撃を受けた時のダメージを30%軽減(巨影の範囲奥義を除く)
 `});  
-db_skill.push({name:'��r�ȑz�����K�N', description:`���`���������₷��(�����J�E���g-1)
-1�^�[���ڊJ�n���A���`�����J�E���g-1
-��������U���������A�܂��́A����2�}�X�ȓ��ɖ��������鎞�A�퓬���A�U���A���h+6�A���_���[�W+���g�̖��h��10%
+db_skill.push({name:'一途な想いの薔薇', description:`奥義が発動しやすい(発動カウント-1)
+1ターン目開始時、奥義発動カウント-1
+自分から攻撃した時、または、周囲2マス以内に味方がいる時、戦闘中、攻撃、魔防+6、かつダメージ+自身の魔防の10%
 `});  
-db_skill.push({name:'�����p���ԉł̉�', description:`�U��+3
-�퓬�J�n���A���g��HP��25%�ȏ�Ȃ�A�퓬���A�U���A�����A����A���h+5�A���A��Βǌ��A���A�������̓G�Ɛ퓬���A������3�����ݗL���A�G��3�����ݕs���ƂȂ�
+db_skill.push({name:'竜血継ぐ花嫁の花', description:`攻撃+3
+戦闘開始時、自身のHPが25%以上なら、戦闘中、攻撃、速さ、守備、魔防+5、かつ、絶対追撃、かつ、無属性の敵と戦闘時、自分は3すくみ有利、敵は3すくみ不利となる
 `});  
-db_skill.push({name:'�g���̐e�q�̐���', description:`�y�Ĉړ�(2)�z�𔭓��\
-���A�b����
-���`���������₷��(�����J�E���g-1)
-��������U���������A�܂��́A����2�}�X�ȓ��ɖ��������鎞�A�퓬���A���g�̍U���A�����A����A���h+5�A���G�̍U���A�����A����A���h���������󂯂Ă��鋭���̍��v�l��50%��������(�ő�6)
+db_skill.push({name:'紅炎の親子の聖斧', description:`【再移動(2)】を発動可能
+竜、獣特効
+奥義が発動しやすい(発動カウント-1)
+自分から攻撃した時、または、周囲2マス以内に味方がいる時、戦闘中、自身の攻撃、速さ、守備、魔防+5、かつ敵の攻撃、速さ、守備、魔防が自分が受けている強化の合計値の50%だけ減少(最大6)
 `});  
-db_skill.push({name:'�\���̌Ղ̒܉�', description:`�U��+3
-�^�[���J�n���A����4�}�X�ȓ��̓G�̍U���A�����A����A���h-6(�G�̎���s���I���܂�)
-�퓬�J�n���A�G��HP��75%�ȏ�̎��A�퓬���A�U���A����+6�G�̋����𖳌�(�����ɂȂ�̂́A�ە��≞������+����)
-2�^�[���ڂƁA4�^�[���ڈȍ~�̃^�[���J�n���A���g��ԂɂȂ�(�����łȂ��ꍇ�A���g��Ԃ�����)���g��ԂȂ�A�U��+2�A�����`���������`�ɂ��_���[�W+7�A�퓬���A�G�̉��`�����J�E���g�ϓ���+�𖳌��A�����g�̉��`�����J�E���g�ϓ���-�𖳌�
-���̏�ԂōU���������A�퓬��A������5�_���[�W
+db_skill.push({name:'暴走の虎の爪牙', description:`攻撃+3
+ターン開始時、周囲4マス以内の敵の攻撃、速さ、守備、魔防-6(敵の次回行動終了まで)
+戦闘開始時、敵のHPが75%以上の時、戦闘中、攻撃、速さ+6敵の強化を無効(無効になるのは、鼓舞や応援等の+効果)
+2ターン目と、4ターン目以降のターン開始時、化身状態になる(そうでない場合、化身状態を解除)化身状態なら、攻撃+2、かつ奥義発動時奥義によるダメージ+7、戦闘中、敵の奥義発動カウント変動量+を無効、かつ自身の奥義発動カウント変動量-を無効
+その状態で攻撃した時、戦闘後、自分に5ダメージ
 `});  
-db_skill.push({name:'�������̗�', description:`����+3
-�˒�2�̓G�ɁA�G�̎�������h�̒Ⴂ���Ń_���[�W�v�Z
-�����Ǝx��������ł��鑊��̎���2�}�X�ȓ��̃}�X�Ɉړ��\
-�^�[���J�n���A����3�}�X�ȓ��Ɏ����Ǝx��������ł��鑊�肪���鎞�A�����ƁA����3�}�X�ȓ��̎����Ǝx��������ł��鑊��Ɂy���؂�E�ǌ����ʁz��t�^(1�^�[��)
-�퓬�J�n���A���g��HP��25%�ȏ�Ȃ�A�퓬���A�U���A�����A����A���h+5
+db_skill.push({name:'透魔竜の力', description:`速さ+3
+射程2の敵に、敵の守備か魔防の低い方でダメージ計算
+自分と支援を結んでいる相手の周囲2マス以内のマスに移動可能
+ターン開始時、周囲3マス以内に自分と支援を結んでいる相手がいる時、自分と、周囲3マス以内の自分と支援を結んでいる相手に【見切り・追撃効果】を付与(1ターン)
+戦闘開始時、自身のHPが25%以上なら、戦闘中、攻撃、速さ、守備、魔防+5
 `});  
-db_skill.push({name:'䩔��̃u���X', description:`���h+3
-�˒�2�̓G�ɁA�G�̎�������h�̒Ⴂ���Ń_���[�W�v�Z
-�u�̂��v�u�x��v�g�p���A�����ƑΏۂ̏\�������ɂ���G�̍U������h-7�y�L�����Z���z��t�^(�G�̎���s���I���܂�)
-�퓬�J�n���A���g��HP��25%�ȏ�̎��A�퓬���A�����A���h+6
+db_skill.push({name:'茫漠のブレス', description:`魔防+3
+射程2の敵に、敵の守備か魔防の低い方でダメージ計算
+「歌う」「踊る」使用時、自分と対象の十字方向にいる敵の攻撃､魔防-7【キャンセル】を付与(敵の次回行動終了まで)
+戦闘開始時、自身のHPが25%以上の時、戦闘中、速さ、魔防+6
 `});  
-db_skill.push({name:'�����O���g�j��', description:`���`���������₷��(�����J�E���g-1)
-�퓬�J�n���A���g��HP��25%�ȏ�Ȃ�A�퓬���A�G�̍U���A�����A���-5�A���g�̉��`�����J�E���g�ϓ���+1�A�G�̉��`�����J�E���g�ϓ���-1(���n�����ʕ������A�ő�l�K�p)����A�G�������\�Ȃ�A�܂��́A�G����U�����ꂽ�����Βǌ�
+db_skill.push({name:'死斧グリトニル', description:`奥義が発動しやすい(発動カウント-1)
+戦闘開始時、自身のHPが25%以上なら、戦闘中、敵の攻撃、速さ、守備-5、自身の奥義発動カウント変動量+1、敵の奥義発動カウント変動量-1(同系統効果複数時、最大値適用)､かつ、敵が反撃可能なら、または、敵から攻撃された時､絶対追撃
 `});  
-db_skill.push({name:'�ŖS�̑���', description:`�˒�2�̓G�ɁA�G�̎�������h�̒Ⴂ���Ń_���[�W�v�Z
-���`���������₷��(�����J�E���g-1)
-�G����U�����ꂽ���A�܂��́A�퓬�J�n���A�G��HP��75%�ȏ�̎��A�퓬���A���g�̍U��+6�G�̍U��-6�A�����A�G��Ƃ��ɒǌ��s�A�������ŏ��ɗ^����_���[�W+�G�̖��h��40%
+db_skill.push({name:'滅亡の霜雪', description:`射程2の敵に、敵の守備か魔防の低い方でダメージ計算
+奥義が発動しやすい(発動カウント-1)
+敵から攻撃された時、または、戦闘開始時、敵のHPが75%以上の時、戦闘中、自身の攻撃+6敵の攻撃-6、自分、敵､ともに追撃不可、自分が最初に与えるダメージ+敵の魔防の40%
 `});  
-db_skill.push({name:'�X���}���e', description:`
-�^�[���J�n���A�_���̉Ԃ����g�Ɏg�p�����񐔂�10��ȏ�Ȃ�A�U���A���+6(1�^�[��)
-�G����U�����ꂽ���A�܂��́A�퓬�J�n���A�G��HP��75%�ȏ�̎��A�퓬���A�U���A�����A����A���h���_���̉Ԃ����g�Ɏg�p�����񐔂ɂ���čő�+5�㏸(�g�p�����񐔂�1��ȏ�Ȃ�+5�A0��Ȃ�+4)�A���A�_���̉Ԃ����g�Ɏg�p�����񐔂�5��ȏ�Ȃ�A�G�̉��`�����J�E���g�ϓ���-1(���n�����ʕ������A�ő�l�K�p)
-����3�}�X�ȓ��ɖ��������鎞�A�퓬���A�U���A�����A����A���h+4�A���A�U���A�����A����A���h���������󂯂Ă���U���A�����A����A���h�̋����̒l�����㏸(�\�͒l���ƂɌv�Z)
+db_skill.push({name:'氷槍マルテ', description:`
+ターン開始時、神竜の花を自身に使用した回数が10回以上なら、攻撃、守備+6(1ターン)
+敵から攻撃された時、または、戦闘開始時、敵のHPが75%以上の時、戦闘中、攻撃、速さ、守備、魔防が神竜の花を自身に使用した回数によって最大+5上昇(使用した回数が1回以上なら+5、0回なら+4)、かつ、神竜の花を自身に使用した回数が5回以上なら、敵の奥義発動カウント変動量-1(同系統効果複数時、最大値適用)
+周囲3マス以内に味方がいる時、戦闘中、攻撃、速さ、守備、魔防+4、かつ、攻撃、速さ、守備、魔防が自分が受けている攻撃、速さ、守備、魔防の強化の値だけ上昇(能力値ごとに計算)
 `});  
-db_skill.push({name:'�Í��n���̃u���X', description:`�U��+3
-�˒�2�̓G�ɁA�G�̎�������h�̒Ⴂ���Ń_���[�W�v�Z
-�^�[���J�n���A�����Ǝ���2�}�X�ȓ��̖����̍U���A���h+6�A���y�퓬�O�_���[�W�����z��t�^(1�^�[��)
-�G����U�����ꂽ���A�܂��́A�퓬�J�n���A�G��HP��75%�ȏ�̎���퓬���A�G�̍U���A���h-6�A�G�͒ǌ��s��
-�y�퓬�O�_���[�W�����z���g���󂯂�퓬�ȊO�̃_���[�W��0�ɂȂ�(�֓ŁA���̓���)(�͈͉��`������)
+db_skill.push({name:'暗黒地竜のブレス', description:`攻撃+3
+射程2の敵に、敵の守備か魔防の低い方でダメージ計算
+ターン開始時、自分と周囲2マス以内の味方の攻撃、魔防+6、かつ【戦闘外ダメージ無効】を付与(1ターン)
+敵から攻撃された時、または、戦闘開始時、敵のHPが75%以上の時､戦闘中、敵の攻撃、魔防-6、敵は追撃不可
+【戦闘外ダメージ無効】自身が受ける戦闘以外のダメージは0になる(蛇毒、雷の塔等)(範囲奥義を除く)
 `});  
-db_skill.push({name:'�}悃{���K�m��', description:`���h+3
-�^�[���J�n���A����4�}�X�ȓ��ɓG�����鎞�A�����Ɂy�G�㉻�_���[�W+�z��t�^�A���ł��߂��G�̍U���A���h-6(�G�̎���s���I���܂�)
-��������U���������A�܂��́A����1�}�X�ȓ��ɖ��������Ȃ����A�퓬���A�U���A���h+6
-�y�G�㉻�_���[�W+�z�_���[�W+�G���󂯂Ă���㉻�̍��v�l(1�^�[��)
+db_skill.push({name:'嘲謔ボルガノン', description:`魔防+3
+ターン開始時、周囲4マス以内に敵がいる時、自分に【敵弱化ダメージ+】を付与、かつ最も近い敵の攻撃、魔防-6(敵の次回行動終了まで)
+自分から攻撃した時、または、周囲1マス以内に味方がいない時、戦闘中、攻撃、魔防+6
+【敵弱化ダメージ+】ダメージ+敵が受けている弱化の合計値(1ターン)
 `});  
-db_skill.push({name:'�{���̎���', description:`���`���������₷��(�����J�E���g-1)
-1�`3�^�[���ڊJ�n���A�܂��́A�^�[���J�n���A���g��HP��99%�ȉ��̎��A���`�����J�E���g-1
-1�`3�^�[���ڂ̊ԁA�܂��́A�퓬�J�n���A���g��HP��99%�ȉ��̎��A�퓬���A�U���A����+6�A���A���`�������A���`�ɂ��_���[�W+7�A���A���`�������A���`�ȊO�̃X�L���ɂ��u�_���[�W������%�y���v�𖳌�(�_���[�W���Z�A�y�������́A�͈͉��`������)
+db_skill.push({name:'怒雷の紫書', description:`奥義が発動しやすい(発動カウント-1)
+1～3ターン目開始時、または、ターン開始時、自身のHPが99%以下の時、奥義発動カウント-1
+1～3ターン目の間、または、戦闘開始時、自身のHPが99%以下の時、戦闘中、攻撃、速さ+6、かつ、奥義発動時、奥義によるダメージ+7、かつ、奥義発動時、奥義以外のスキルによる「ダメージを○○%軽減」を無効(ダメージ加算、軽減無効は、範囲奥義を除く)
 `});  
-db_skill.push({name:'���_�g�[���n���}�[', description:`���`���������₷��(�����J�E���g-1)
-�퓬�J�n������g��HP��25%�ȏ�Ȃ�A�퓬���A�U���A����+6�A���A�G�̉��`�����J�E���g�ϓ���+�𖳌��A���A���g�̉��`�����J�E���g�ϓ���-�𖳌�
-�퓬�J�n���A���g��HP��25%�ȏ�Ȃ�A��������U���������A�������G���10�ȏ㍂����΁A2��U��
+db_skill.push({name:'雷神トールハンマー', description:`奥義が発動しやすい(発動カウント-1)
+戦闘開始時､自身のHPが25%以上なら、戦闘中、攻撃、速さ+6、かつ、敵の奥義発動カウント変動量+を無効、かつ、自身の奥義発動カウント変動量-を無効
+戦闘開始時、自身のHPが25%以上なら、自分から攻撃した時、速さが敵より10以上高ければ、2回攻撃
 `});  
-db_skill.push({name:'��_�̉s��', description:`���`���������₷��(�����J�E���g-1)
-�����̍����r����X�L���̔�r���莞�A���g�̑���+10�Ƃ��Ĕ���
-�^�[���J�n���A����2�}�X�ȓ��ɖ��������鎞�A�����Ɂy���؂�E�ǌ����ʁz�A�y����z��t�^(1�^�[��)
-��������U���������A�܂��́A����2�}�X�ȓ��ɖ��������鎞�A�퓬���A�U���A�����A����A���h+5
-�y���؂�E�ǌ����ʁz�퓬���A�������G���1�ȏ㍂�����A�G�̐�Βǌ��𖳌��A���A�����̒ǌ��s�𖳌�(1�^�[��)
-�y����z�������G��荂�����A�󂯂��͈͉��`�̃_���[�W�ƁA�퓬���ɍU�����󂯂����̃_���[�W�𑬂��̍��~4%�y��(�ő�40%)(���e�͈͉̔��`������)(1�^�[��)
+db_skill.push({name:'戦神の鋭剣', description:`奥義が発動しやすい(発動カウント-1)
+速さの差を比較するスキルの比較判定時、自身の速さ+10として判定
+ターン開始時、周囲2マス以内に味方がいる時、自分に【見切り・追撃効果】、【回避】を付与(1ターン)
+自分から攻撃した時、または、周囲2マス以内に味方がいる時、戦闘中、攻撃、速さ、守備、魔防+5
+【見切り・追撃効果】戦闘中、速さが敵より1以上高い時、敵の絶対追撃を無効、かつ、自分の追撃不可を無効(1ターン)
+【回避】速さが敵より高い時、受けた範囲奥義のダメージと、戦闘中に攻撃を受けた時のダメージを速さの差×4%軽減(最大40%)(巨影の範囲奥義を除く)(1ターン)
 `});  
-db_skill.push({name:'��_�̐�p��', description:`���`���������₷��(�����J�E���g-1)
-�퓬�J�n���A���g��HP��25%�ȏ�Ȃ�A�퓬���A�U���A���h+6�A���A�����̖��h-�G�̖��h�̒l�ɂ���ĈقȂ���ʂ𔭓�(�E1�ȏ�Ȃ�A�����͐�Βǌ��E5�ȏ�Ȃ�A����ɓG�����A���A���A�|�A�Ê�A�b�̎��A�G�͔����s�E10�ȏ�Ȃ�A����ɓG�̉��`�ȊO�̃X�L���ɂ��u�_���[�W���Z�Z%�y���v�𔼕�����(�����ɂ��鐔�l�͒[���؎̂āB�Ⴆ�ΓG�́u�_���[�W��45%�y���v�Ȃ甼���́u22%�v���𖳌��ɂ��A�u�_���[�W��23%�y���v�ɂ���))
+db_skill.push({name:'戦神の戦術書', description:`奥義が発動しやすい(発動カウント-1)
+戦闘開始時、自身のHPが25%以上なら、戦闘中、攻撃、魔防+6、かつ、自分の魔防-敵の魔防の値によって異なる効果を発動(・1以上なら、自分は絶対追撃・5以上なら、さらに敵が剣、槍、斧、弓、暗器、獣の時、敵は反撃不可・10以上なら、さらに敵の奥義以外のスキルによる「ダメージを〇〇%軽減」を半分無効(無効にする数値は端数切捨て。例えば敵の「ダメージを45%軽減」なら半分の「22%」分を無効にし、「ダメージを23%軽減」にする))
 `});  
-db_skill.push({name:'��_�̕���', description:`���h+3
-�G����U�����ꂽ���A�܂��́A�퓬�J�n���A�G��HP��75%�ȏ�̎��A�퓬���A�G�̍U���A���h-6�A���A���h���G��荂�����A�󂯂��͈͉��`�̃_���[�W�ƁA�퓬���ɍU�����󂯂����̃_���[�W�𖂖h�̍��~4%�y��(�ő�40%)(���e�͈͉̔��`������)�A����ɁA���h���G���5�ȏ㍂�����A�G�͒ǌ��s��
+db_skill.push({name:'戦神の風書', description:`魔防+3
+敵から攻撃された時、または、戦闘開始時、敵のHPが75%以上の時、戦闘中、敵の攻撃、魔防-6、かつ、魔防が敵より高い時、受けた範囲奥義のダメージと、戦闘中に攻撃を受けた時のダメージを魔防の差×4%軽減(最大40%)(巨影の範囲奥義を除く)、さらに、魔防が敵より5以上高い時、敵は追撃不可
 `});  
-db_skill.push({name:'��_�̍��Ȃ�S��', description:`�U��+3
-�퓬�J�n���A���g��HP��25%�ȏ�Ȃ�A�퓬���A�U���A�����A����A���h+5�A���A�U���������̉��`�������A����4�}�X�ȓ��̖����̐l���ɂ���ĈقȂ���ʂ𔭓�(�E1�ȏ�Ȃ�A�����̍ŏ��̍U���O�A���g�̉��`�����J�E���g���A���`�����J�E���g�̍ő�l�̔�����������(�����l�͒[���؎̂�)�E2�ȏ�Ȃ�A����ɁA�ŏ��Ɏ󂯂��U���̃_���[�W�����`�����J�E���g�̍ő�l�~10%�y���E3�ȏ�Ȃ�A����ɁA�G�̐�Βǌ��𖳌��A���A�����̒ǌ��s�𖳌�)
+db_skill.push({name:'戦神の剛なる鉄剣', description:`攻撃+3
+戦闘開始時、自身のHPが25%以上なら、戦闘中、攻撃、速さ、守備、魔防+5、かつ、攻撃時発動の奥義装備時、周囲4マス以内の味方の人数によって異なる効果を発動(・1以上なら、自分の最初の攻撃前、自身の奥義発動カウントが、奥義発動カウントの最大値の半分だけ減少(減少値は端数切捨て)・2以上なら、さらに、最初に受けた攻撃のダメージを奥義発動カウントの最大値×10%軽減・3以上なら、さらに、敵の絶対追撃を無効、かつ、自分の追撃不可を無効)
 `});  
-db_skill.push({name:'��_�̑啀', description:`�U��+3
-��^�[���Ȃ�A�퓬���A�U���A����+10�A���A���g�̍U���A�����̎㉻�𖳌��A���A�ŏ��ɗ^����_���[�W+�U����15%
-�����^�[���Ȃ�A�퓬���A�U���A����+5
+db_skill.push({name:'戦神の大斧', description:`攻撃+3
+奇数ターンなら、戦闘中、攻撃、速さ+10、かつ、自身の攻撃、速さの弱化を無効、かつ、最初に与えるダメージ+攻撃の15%
+偶数ターンなら、戦闘中、攻撃、速さ+5
 `});  
-db_skill.push({name:'��n�̌�', description:`�U��+3
-�퓬�J�n���A���g��HP��25%�ȏ�Ȃ�A�퓬���A�U���A����+6�A���A�����̒ǌ��s�𖳌��A���A�G�́A�u�G����U�����󂯂�ۂɔ������鉜�`�v���u�_���[�W���Z�Z%�y���v�𖳌�(�͈͉��`������)
-�퓬�J�n���A���g��HP��25%�ȏ�Ȃ�A�퓬��AHP7��
+db_skill.push({name:'大地の剣', description:`攻撃+3
+戦闘開始時、自身のHPが25%以上なら、戦闘中、攻撃、速さ+6、かつ、自分の追撃不可を無効、かつ、敵は、「敵から攻撃を受ける際に発動する奥義」を「ダメージを〇〇%軽減」を無効(範囲奥義を除く)
+戦闘開始時、自身のHPが25%以上なら、戦闘後、HP7回復
 `});  
-db_skill.push({name:'�R�t���|���̏�', description:`��͑��̕��퓯�l�̃_���[�W�v�Z�ɂȂ�
-�^�[���J�n���A�x������̍U���A����A���h+6�A���A�u��������U�����A��Βǌ��v�̏�Ԃ�t�^
-�^�[���J�n���A������1�l�ȏ㌂�j����Ă��鎞�A�x������̉��`�����J�E���g-2�A���A�u�G�͒ǌ��s�v��t�^
+db_skill.push({name:'軍師の諫言の杖', description:`杖は他の武器同様のダメージ計算になる
+ターン開始時、支援相手の攻撃、守備、魔防+6、かつ、「自分から攻撃時、絶対追撃」の状態を付与
+ターン開始時、味方が1人以上撃破されている時、支援相手の奥義発動カウント-2、かつ、「敵は追撃不可」を付与
 `});  
-db_skill.push({name:'�ԊJ���S�Z�̌�', description:`���`���������₷��(�����J�E���g-1)
-1�^�[���ڊJ�n���A���`�����J�E���g-1
-�퓬�J�n���A���g��HP��25%�ȏ�Ȃ�A�퓬��A���`�����J�E���g-1
-�퓬�J�n���A���g��HP��25%�ȏ�Ȃ�A�퓬���A�U���A�����A����A���h+5�A���A�G�̐�Βǌ��𖳌��A���A�����̒ǌ��s�𖳌�
+db_skill.push({name:'花開く心技の剣', description:`奥義が発動しやすい(発動カウント-1)
+1ターン目開始時、奥義発動カウント-1
+戦闘開始時、自身のHPが25%以上なら、戦闘後、奥義発動カウント-1
+戦闘開始時、自身のHPが25%以上なら、戦闘中、攻撃、速さ、守備、魔防+5、かつ、敵の絶対追撃を無効、かつ、自分の追撃不可を無効
 `});  
-db_skill.push({name:'���ɐF�Â����藑', description:`���`���������₷��(�����̓E���g-1)
-�^�[���J�n���A�����̎���5�}�X�ȓ��ɂ���ł��߂��G�̑����A���h-6(�G�̎���s���I���܂�)
-�������y�L���ȏ�ԁz�̎��A�܂��́A�G���y�s���ȏ�Ԉُ�z���󂯂Ă��鎞�A�퓬���A�G�̑����A���h-6�A���A�����̋����̍��v�l+�G�̎㉻�̍��v�l�ɂ���ĈقȂ���ʂ𔭓�(�E6�ȏ�Ȃ�A�������󂯂Ă���ǌ��s�𖳌��E18�ȏ�Ȃ�A����ɁA�G�͔����s��)(�Ⴆ�΁A�����̋������U���A����+6. �G�̎㉻���U���A����-6�Ȃ�A �����̍��v�l+�㉻�̍��v�l��24�ƂȂ�)
-�y�L���ȏ�ԁz�u1�^�[���v�̌��ʑS�� (�����A�ړ�+1�A�G�㉻�_���[�W+��)
-�y�s���ȏ�Ԉُ�z�u�G�̎���s���I���܂Łv�̌��ʑS��(�㉻�A�ړ������A�p�j�b�N�A�����s�A ���������A�L�����Z����)
+db_skill.push({name:'可憐に色づく飾り卵', description:`奥義が発動しやすい(発動力ウント-1)
+ターン開始時、自分の周囲5マス以内にいる最も近い敵の速さ、魔防-6(敵の次回行動終了まで)
+自分が【有利な状態】の時、または、敵が【不利な状態異常】を受けている時、戦闘中、敵の速さ、魔防-6、かつ、自分の強化の合計値+敵の弱化の合計値によって異なる効果を発動(・6以上なら、自分が受けている追撃不可を無効・18以上なら、さらに、敵は反撃不可)(例えば、自分の強化が攻撃、速さ+6. 敵の弱化が攻撃、速さ-6なら、 強化の合計値+弱化の合計値は24となる)
+【有利な状態】「1ターン」の効果全般 (強化、移動+1、敵弱化ダメージ+等)
+【不利な状態異常】「敵の次回行動終了まで」の効果全般(弱化、移動制限、パニック、反撃不可、 相性激化、キャンセル等)
 `});  
-db_skill.push({name:'���׋C�Ȕ��e�̕�', description:`��s��������
-���+3
-�퓬�J�n���A���g��HP��25%�ȏ�Ȃ�A�퓬���A�U���A�����A����A���h+5�A���A�^����_���[�W+�����̎����20%�A�󂯂�_���[�W-�����̎����20%�A(�͈͉��`����)�A���A�퓬��A�����Ǝ���2�}�X�̖�����7��
+db_skill.push({name:'無邪気な白兎の斧', description:`飛行特効無効
+守備+3
+戦闘開始時、自身のHPが25%以上なら、戦闘中、攻撃、速さ、守備、魔防+5、かつ、与えるダメージ+自分の守備の20%、受けるダメージ-自分の守備の20%、(範囲奥義除く)、かつ、戦闘後、自分と周囲2マスの味方を7回復
 `});  
-db_skill.push({name:'��H�̖��e�̗h��', description:`���`���������₷��(�����J�E���g-1)
-1�^�[���ڊJ�n���A���`�����J�E���g-2
-����2�}�X�ȓ��̖����́A����2�}�X�ȓ��Ɉړ��\
-��������U���������A�܂��́A����2�}�X�ȓ��ɖ��������鎞�A�퓬���A�U��+4�A����+6�A�����̍U��+(�����̉��`�����J�E���g�̍ő�l�~3)
+db_skill.push({name:'二羽の魔兎の揺籃', description:`奥義が発動しやすい(発動カウント-1)
+1ターン目開始時、奥義発動カウント-2
+周囲2マス以内の味方の、周囲2マス以内に移動可能
+自分から攻撃した時、または、周囲2マス以内に味方がいる時、戦闘中、攻撃+4、速さ+6、自分の攻撃+(自分の奥義発動カウントの最大値×3)
 `});  
-db_skill.push({name:'���u�̍ב�', description:`
-��������U���������A�܂��́A����2�}�X�ȓ��ɖ��������鎞�A�퓬���A�U���A����+5�A�������^����_���[�W+7
-�����A�ړ��n�⏕(�̓�����A�����߂��A��荞�ݓ�)���g�p�������A�܂��͎����Ɏg�p���ꂽ���A�����Ƒ���̍U���A����+6(1�^�[��)�A���AHP10��
-�퓬�J�n���A�G��HP��75%�ȏ�Ȃ�A�퓬���A�U���A����+5
+db_skill.push({name:'蒼穹の細槍', description:`
+自分から攻撃した時、または、周囲2マス以内に味方がいる時、戦闘中、攻撃、速さ+5、自分が与えるダメージ+7
+応援、移動系補助(体当たり、引き戻し、回り込み等)を使用した時、または自分に使用された時、自分と相手の攻撃、速さ+6(1ターン)、かつ、HP10回復
+戦闘開始時、敵のHPが75%以上なら、戦闘中、攻撃、速さ+5
 `});  
-db_skill.push({name:'�D�|�~�����O��', description:`
-��s����
-��������U���������A�܂��́A����2�}�X�ȓ��ɖ��������鎞�A�퓬���A�U���A����+5�A���A�������G���5�ȏ㍂�����A�G�͔����s��
-�퓬�J�n���A���g��HP��25%�ȏ�Ȃ�A�퓬���A�U���A����+5�A�퓬���A�ŏ��ɗ^����_���[�W+������15%
-�퓬�J�n���A���g��HP��25%�ȏ�Ȃ�A��������U���������A�퓬���ɍU�����Ă���΁A�퓬��ɓG�ƁA���̎���2�}�X�̓G��7�_���[�W
+db_skill.push({name:'颯弓ミュルグレ', description:`
+飛行特効
+自分から攻撃した時、または、周囲2マス以内に味方がいる時、戦闘中、攻撃、速さ+5、かつ、速さが敵より5以上高い時、敵は反撃不可
+戦闘開始時、自身のHPが25%以上なら、戦闘中、攻撃、速さ+5、戦闘中、最初に与えるダメージ+速さの15%
+戦闘開始時、自身のHPが25%以上なら、自分から攻撃した時、戦闘中に攻撃していれば、戦闘後に敵と、その周囲2マスの敵に7ダメージ
 `});  
-db_skill.push({name:'����̗��', description:`
-�G�͔����s��
-��������U���������A�퓬���A�U���A����+4
-�퓬���ɍU�����Ă���΁A�퓬��ɓG�ƁA���̎���2�}�X�̓G�ɔ����s�̏�Ԉُ��t�^(�G�̎���s���I���܂�)
-�����̎���4�}�X�ȓ��ŁA�Ĉړ��𔭓������G�Ɂy�Ĉړ������z��t�^
-�y�Ĉړ������z��������U���A�⏕�A�n�`�j��̍s����������A����Ɉړ��ł�����ʂ𐧌������Ԉُ�(�G�̎���s���I���܂�)�B���̏�Ԉُ���󂯂Ă���G�̎˒���1�̎��A����Ɉړ��ł��鋗�����ő�1�ɐ����B���̏�Ԉُ���󂯂Ă���G�̎˒���2�̎��A�Ĉړ���������A�s�����I������
+db_skill.push({name:'慈母の霊杖', description:`
+敵は反撃不可
+自分から攻撃した時、戦闘中、攻撃、速さ+4
+戦闘中に攻撃していれば、戦闘後に敵と、その周囲2マスの敵に反撃不可の状態異常を付与(敵の次回行動終了まで)
+自分の周囲4マス以内で、再移動を発動した敵に【再移動制限】を付与
+【再移動制限】自分から攻撃、補助、地形破壊の行動をした後、直後に移動できる効果を制限する状態異常(敵の次回行動終了まで)。この状態異常を受けている敵の射程が1の時、直後に移動できる距離を最大1に制限。この状態異常を受けている敵の射程が2の時、再移動発動直後、行動を終了する
 `});  
-db_skill.push({name:'�}���E�C���O�X�s�A', description:`�y�Ĉړ�(2)�z�𔭓��\
-�d���A�R�n����
-�U��+3
-��������U���������A�܂��́A����2�}�X�ȓ��ɖ��������鎞�A�퓬���A�U���A�����A����A���h+5�A���A�G���������󂯂Ă���΁A�퓬���A���g�̍U���A�����A����A���h���G���󂯂Ă��鋭���̒l�����㏸���A�G�̍U���A�����A����A���h���G���󂯂Ă��鋭���̒l��������(�\�͒l���ƂɌv�Z)
-�y�Ĉړ�(2)�z��������U���A�⏕�A�n�`�j��̍s����������A�����2�}�X�ړ��ł���(���g�̈ړ��^�C�v�ňړ��B��:���s�́A�тɈړ����Â炢)(�U���A�⏕�A�n�`�j��s��)(���n�����ʕ������A�ő�l�K�p)(1�^�[����1��̂�)(�s������ɍčs���\�ɂ���X�L���������́A�čs���ŏ����𖞂����΁A�Ĉړ����\)(�Ĉړ��ł��鋗���́A�ʏ�̈ړ��̋����Ƃ͖��֌W)(2�}�X�𒴂��鋗���̃��[�v�ړ��͂ł��Ȃ�)
+db_skill.push({name:'扶翼ウイングスピア', description:`【再移動(2)】を発動可能
+重装、騎馬特効
+攻撃+3
+自分から攻撃した時、または、周囲2マス以内に味方がいる時、戦闘中、攻撃、速さ、守備、魔防+5、かつ、敵が強化を受けていれば、戦闘中、自身の攻撃、速さ、守備、魔防が敵が受けている強化の値だけ上昇し、敵の攻撃、速さ、守備、魔防が敵が受けている強化の値だけ減少(能力値ごとに計算)
+【再移動(2)】自分から攻撃、補助、地形破壊の行動をした後、直後に2マス移動できる(自身の移動タイプで移動。例:歩行は、林に移動しづらい)(攻撃、補助、地形破壊不可)(同系統効果複数時、最大値適用)(1ターンに1回のみ)(行動直後に再行動可能にするスキル発動時は、再行動で条件を満たせば、再移動が可能)(再移動できる距離は、通常の移動の距離とは無関係)(2マスを超える距離のワープ移動はできない)
 `});  
-db_skill.push({name:'�ق�ꖂ���m�̏�', description:`����+3
-�퓬�J�n���A���g��HP��25%�ȏ�Ȃ�A�퓬���A�U���A�����A����A���h���_���̉Ԃ����g�Ɏg�p�����񐔂ɂ���čő�+7�㏸(�g�p�񐔂�5��ȏ�Ȃ�+7�A4��Ȃ�+6�A3��Ȃ�+5�A2��ȉ��Ȃ�+4)
-�퓬�J�n���A���g��HP��25%�ȏ�A���A�_���̉Ԃ����g�Ɏg�p�����񐔂�3��ȏ�Ȃ�A����ɐ퓬���A�U���A�����A����A���h���������󂯂Ă���U���A�����A����A���h�̋����̒l�����㏸(�\�͒l���ƂɌv�Z)
+db_skill.push({name:'雇われ魔道士の書', description:`速さ+3
+戦闘開始時、自身のHPが25%以上なら、戦闘中、攻撃、速さ、守備、魔防が神竜の花を自身に使用した回数によって最大+7上昇(使用回数が5回以上なら+7、4回なら+6、3回なら+5、2回以下なら+4)
+戦闘開始時、自身のHPが25%以上、かつ、神竜の花を自身に使用した回数が3回以上なら、さらに戦闘中、攻撃、速さ、守備、魔防が自分が受けている攻撃、速さ、守備、魔防の強化の値だけ上昇(能力値ごとに計算)
 `});  
-db_skill.push({name:'�萶�����S�̗���', description:`�d������
-�d����������
-�˒�2�̓G�ɁA�G�̎�������h�̒Ⴂ���Ń_���[�W�v�Z
-���`���������₷��(�����J�E���g-1)
-����3�}�X�ȓ��ɖ��������鎞�A�퓬���A�G�̍U���A�����A����A���h-5�A���g�̎㉻�𖳌��A�G�͒ǌ��s��
+db_skill.push({name:'芽生えし心の竜石', description:`重装特効
+重装特効無効
+射程2の敵に、敵の守備か魔防の低い方でダメージ計算
+奥義が発動しやすい(発動カウント-1)
+周囲3マス以内に味方がいる時、戦闘中、敵の攻撃、速さ、守備、魔防-5、自身の弱化を無効、敵は追撃不可
 `});  
-db_skill.push({name:'�P�����g', description:`�U��+3
-�퓬�J�n���A���g��HP��25%�ȏ�Ȃ�A�퓬���A�U��+6�A�G�̍U��-6�A��Βǌ��A���A�퓬���A�G�̍U���A�����A����A���h�����L�̏����𖞂����Ă��鐔�~3��������(�ő�9)(����A:�����̎���3�}�X�ȓ��ɖ���������B����B:�퓬����̎���2�}�X�ȓ��ɑ��̓G������B����C:�������L���ȏ�Ԃ��󂯂Ă���B����D:�G���s���ȏ�Ԉُ���󂯂Ă���)
+db_skill.push({name:'ケルムト', description:`攻撃+3
+戦闘開始時、自身のHPが25%以上なら、戦闘中、攻撃+6、敵の攻撃-6、絶対追撃、かつ、戦闘中、敵の攻撃、速さ、守備、魔防が下記の条件を満たしている数×3だけ減少(最大9)(条件A:自分の周囲3マス以内に味方がいる。条件B:戦闘相手の周囲2マス以内に他の敵がいる。条件C:自分が有利な状態を受けている。条件D:敵が不利な状態異常を受けている)
 `});  
-db_skill.push({name:'�^���ς����J�|', description:`�d���A��s����
-���`���������₷��(�����J�E���g-1)
-1�`4�^�[���ڂɈړ��n�⏕(�̓�����A�����߂��A��荞�ݓ�)���g�p�������A�܂��͎����Ɏg�p���ꂽ���A�����Ƒ���̉��`�����J�E���g-1(1�^�[��1��̂�)
-��������U���������A�܂��́A����2�}�X�ȓ��ɖ��������鎞�A�퓬���A�U���A�����A����A���h+5�A��Βǌ�
+db_skill.push({name:'運命変える絆弓', description:`重装、飛行特効
+奥義が発動しやすい(発動カウント-1)
+1～4ターン目に移動系補助(体当たり、引き戻し、回り込み等)を使用した時、または自分に使用された時、自分と相手の奥義発動カウント-1(1ターン1回のみ)
+自分から攻撃した時、または、周囲2マス以内に味方がいる時、戦闘中、攻撃、速さ、守備、魔防+5、絶対追撃
 `});  
-db_skill.push({name:'�K�[�x���̕�', description:`����+3
-�ړ��n�⏕(�̓�����A�����߂��A��荞�ݓ�)���g�p�������A�܂��͎����Ɏg�p���ꂽ���A�����Ƒ���Ɂu�G�̋�����+�𖳌��v�̏�Ԃ�t�^(1�^�[��)
-�G����U�����ꂽ���A�܂��́A�퓬�J�n���A�G��HP��75%�ȏ�̎��A�퓬���A�U���A�����A����A���h+5�A���A�퓬���A�ŏ��Ɏ󂯂��U���̃_���[�W��40%�y��
+db_skill.push({name:'ガーベラの斧', description:`速さ+3
+移動系補助(体当たり、引き戻し、回り込み等)を使用した時、または自分に使用された時、自分と相手に「敵の強化の+を無効」の状態を付与(1ターン)
+敵から攻撃された時、または、戦闘開始時、敵のHPが75%以上の時、戦闘中、攻撃、速さ、守備、魔防+5、かつ、戦闘中、最初に受けた攻撃のダメージを40%軽減
 `});  
-db_skill.push({name:'�A�L���l�X�̉Ԋ�', description:`���`���������₷��(�����J�E���g-1)
-�������������R���̈ړ��^�C�v�̎�ސ��ɂ���ĈقȂ���ʂ𔭓�(�E1�ȏ�Ȃ�A����3�}�X�ȓ��̓G�́A�퓬���A�U���A����A���h-5�E2�ȏ�Ȃ�A����Ɏ����͐퓬���A�ŏ��Ɏ󂯂��U���̃_���[�W��30%�y���E3�ȏ�Ȃ�A����Ɏ����Ǝ���3�}�X�ȓ��̖����́A�퓬���A�����̍U���Ń_���[�W��^�������A5��)(�^�����_���[�W��0�ł����ʂ͔���)
+db_skill.push({name:'アキメネスの花冠', description:`奥義が発動しやすい(発動カウント-1)
+自分を除く自軍内の移動タイプの種類数によって異なる効果を発動(・1以上なら、周囲3マス以内の敵は、戦闘中、攻撃、守備、魔防-5・2以上なら、さらに自分は戦闘中、最初に受けた攻撃のダメージを30%軽減・3以上なら、さらに自分と周囲3マス以内の味方は、戦闘中、自分の攻撃でダメージを与えた時、5回復)(与えたダメージが0でも効果は発動)
 `});  
-db_skill.push({name:'�����̏�', description:`
-�^�[���J�n���A����2�}�X�ȓ��ɖ��������鎞�A�����Ǝ���2�}�X�ȓ��̖����̎���A���h+6(1�^�[��)
-�퓬�J�n���A���g��HP��25���ȏ�Ȃ�A�퓬���A�U���A�����A����A���h+4
-��������U���������A�܂��́A����2�}�X�ȓ��ɖ��������鎞�A�퓬���A�U���A�����A����A���h+4�A���A�������������󂯂Ă���΁A�퓬���A�G�̍U���A���h���������󂯂Ă������Ɩ��h�̋����̍��v�l��60%��������
+db_skill.push({name:'純理の書', description:`
+ターン開始時、周囲2マス以内に味方がいる時、自分と周囲2マス以内の味方の守備、魔防+6(1ターン)
+戦闘開始時、自身のHPが25％以上なら、戦闘中、攻撃、速さ、守備、魔防+4
+自分から攻撃した時、または、周囲2マス以内に味方がいる時、戦闘中、攻撃、速さ、守備、魔防+4、かつ、自分が強化を受けていれば、戦闘中、敵の攻撃、魔防が自分が受けている守備と魔防の強化の合計値の60%だけ減少
 `});  
-db_skill.push({name:'���F���_���̍r�|', description:`
-��s����
-���`���������₷��(�����J�E���g-1)
-��������U���������A�܂��́A����1�}�X�ȓ��ɖ��������Ȃ����A�퓬���A�U���A����+5
-�퓬�J�n���A���g��HP��25%�ȏ�Ȃ�A�퓬���A�U���A����+5
-��������U���������A�����̑���-�G�̑����̒l�ɂ���ĈقȂ���ʂ𔭓�(�E3�ȏ�Ȃ�A�����͐�Βǌ��E7�ȏ�Ȃ�A����ɒǌ��\�Ȃ玩���̒ǌ��̒���ɒǌ����s��)
+db_skill.push({name:'ヴェルダンの荒弓', description:`
+飛行特効
+奥義が発動しやすい(発動カウント-1)
+自分から攻撃した時、または、周囲1マス以内に味方がいない時、戦闘中、攻撃、速さ+5
+戦闘開始時、自身のHPが25%以上なら、戦闘中、攻撃、速さ+5
+自分から攻撃した時、自分の速さ-敵の速さの値によって異なる効果を発動(・3以上なら、自分は絶対追撃・7以上なら、さらに追撃可能なら自分の追撃の直後に追撃を行う)
 `});  
-db_skill.push({name:'�����̈Ê�', description:`
-�퓬���A�G���󂯂Ă��鋭���̍��v�l���U���ɉ��Z
-�퓬�J�n���A�G��HP��75%�ȏ�̎��A�܂��́A�G���y�L���ȏ�ԁz�̎��A�퓬���A�U���A����+5
-�y�Ê�(7)�z����
-�y�L���ȏ�ԁz�u1�^�[���v�̌��ʑS��(�����A�ړ�+1�A�G�㉻�_���[�W+��)
-�y�Ê�(7)�z�퓬���ɍU�����Ă���΁A�퓬��ɓG�ƁA���̎���2�}�X�̓G�̎���A���h-7(�G�̎���s���I���܂�)
-�퓬�J�n���A���g��HP��25%�ȏ�Ȃ�A�퓬���A�U���A����+5
-�퓬�J�n���A���g��HP��25%�ȏ�Ȃ�A�������G��荂�����A�󂯂��͈͉��`�̃_���[�W�ƁA�퓬���ɍU�����󂯂����̃_���[�W�𑬂��̍��~3%�y��(�ő�30%)(���e�͈͉̔��`������)�A���A�������^����_���[�W+5(�퓬�O���`���܂�)
+db_skill.push({name:'疾風の暗器', description:`
+戦闘中、敵が受けている強化の合計値を攻撃に加算
+戦闘開始時、敵のHPが75%以上の時、または、敵が【有利な状態】の時、戦闘中、攻撃、速さ+5
+【暗器(7)】効果
+【有利な状態】「1ターン」の効果全般(強化、移動+1、敵弱化ダメージ+等)
+【暗器(7)】戦闘中に攻撃していれば、戦闘後に敵と、その周囲2マスの敵の守備、魔防-7(敵の次回行動終了まで)
+戦闘開始時、自身のHPが25%以上なら、戦闘中、攻撃、速さ+5
+戦闘開始時、自身のHPが25%以上なら、速さが敵より高い時、受けた範囲奥義のダメージと、戦闘中に攻撃を受けた時のダメージを速さの差×3%軽減(最大30%)(巨影の範囲奥義を除く)、かつ、自分が与えるダメージ+5(戦闘前奥義も含む)
 `});
 
-let text_description_rule = `�J�n����Ɛ�p���킪���ׂ��A5�b��Ɏn�܂�܂��B
+let text_description_rule = `開始すると専用武器が並べられ、5秒後に始まります。
 
-��p����̐������ɍ��������I��ł��������B
-�B���\�Ȃ��̂͘B����̕��ɂȂ�܂��B
-�i�����ꍇ�́u�Ȃ��v��I��ł��������B�j
+専用武器の説明文に合う武器を選んでください。
+錬成可能なものは錬成後の文になります。
+（無い場合は「なし」を選んでください。）
 
-��������A�܂���2��ԈႦ��Ǝ��̕���ɐi�݂܂��B
-10�񐳉�����ƃN���A�ł��B 
+正解する、または2回間違えると次の武器に進みます。
+10回正解するとクリアです。 
 
 `
 let answers=[]
@@ -320,7 +320,7 @@ function rand_seq(length, begin=0){
 }
 
 function start_game(){
-	db_cards = [{name:"�Ȃ�", description:"", disabled:false}];
+	db_cards = [{name:"なし", description:"", disabled:false}];
 	let randtmp = rand_seq(db_skill.length);
 	for(let i=0; i<MAX_CHOICE+UNSEEN_ANSWER-1; i++){
 		db_cards.push(db_skill[randtmp[i]]);
@@ -341,7 +341,7 @@ function countdown_to_start(duration){
 		// console.log(duration)
 		setTimeout(countdown_to_start, 1000, duration-1)
 	}else{
-		vm.message = "�X�^�[�g�I �c��: " + (10-correct_count)
+		vm.message = "スタート！ 残り: " + (10-correct_count)
 		question()
 		vm.setTimeout_ID = setTimeout(vm.timer_callback, 50)
 	}
@@ -355,7 +355,7 @@ function correct_answer(message_part){
 
 	correct_count += 1
 	if (correct_count < 10){
-		vm.message = message_part + "�c��: " + (10-correct_count)
+		vm.message = message_part + "残り: " + (10-correct_count)
 		answers.shift()
 		question()
 	}else{
@@ -368,13 +368,13 @@ function correct_answer(message_part){
 
 function wrong_answer(clicked_card){
 	if (temporary_disabled){
-		vm.message = "�s����(2���):" + clicked_card.card.name + " �c��: " + (10-correct_count)
+		vm.message = "不正解(2回目):" + clicked_card.card.name + " 残り: " + (10-correct_count)
 		temporary_disabled.card.disabled = false
 		temporary_disabled = null
 		answers.push(answers.shift())
 		question()
 	}else{
-		vm.message = "�s����(1���):" + clicked_card.card.name + " �c��: " + (10-correct_count)
+		vm.message = "不正解(1回目):" + clicked_card.card.name + " 残り: " + (10-correct_count)
 		temporary_disabled = clicked_card
 		temporary_disabled.card.disabled = true
 	}
@@ -406,7 +406,7 @@ const app = Vue.createApp({
 	},
 	data() {
 		return ({
-			message: "���[������",
+			message: "ルール説明",
 			db_cards: db_cards,
 			description: text_description_rule,
 			MAX_CHOICE: MAX_CHOICE,
@@ -437,7 +437,7 @@ app.component('card-text', {
 			if (state.newGame){
 				start_game();
 			}else if(! this.card.disabled){
-				if (this.card.name == "�Ȃ�"){
+				if (this.card.name == "なし"){
 					for(let i=1; i<MAX_CHOICE; i++){
 						if(vm.db_cards[i].description == db_cards[answers[0]].description) {
 							wrong_answer(this)
@@ -445,11 +445,11 @@ app.component('card-text', {
 						}
 					}
 					// no "return" executed 
-					correct_answer("�����I" + db_cards[answers[0]].name + "(���z�u) ")
+					correct_answer("正解！" + db_cards[answers[0]].name + "(未配置) ")
 				}else{
 					if(this.card.description == db_cards[answers[0]].description) {
 						this.card.disabled = true
-						correct_answer("�����I" + db_cards[answers[0]].name + " ")
+						correct_answer("正解！" + db_cards[answers[0]].name + " ")
 					}else{
 						wrong_answer(this)
 					}
