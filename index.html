@@ -9,16 +9,21 @@
 .disabled{
 	background-color: silver; 
 }
+.card{
+	border: 1px solid #cccccc;
+	height: 3em;
+}
 #description{
 	height: 300px;
-	background-color: yellow;
+	white-space: pre-wrap;
+	border: 1px solid #cccccc;
 }
 </style>
 </head>
 <body>
   <div id="app">
 	  <div id="controller">
-		  <!--<button @click="reset();" align="Right">Reset</button>-->
+		{{message}} {{timer}}<button @click="reset();" align="Right">Reset</button>
 	  </div>
 	  <pre id="description" @click="click_description()">{{description}}</pre>
 	  <div id="cards">
@@ -29,7 +34,7 @@
 	  <script src="https://unpkg.com/vue@next"></script>
 <script src="https://unpkg.com/vue@2.5.17"></script>
   -->
-  	<script src="https://unpkg.com/vue@3.2.36/dist/vue.global.js"></script>
+	<script src="https://unpkg.com/vue@3.2.36/dist/vue.global.js"></script>
 <script>
 
 let db_skill=[];
@@ -285,8 +290,7 @@ db_skill.push({name:'疾風の暗器', description:`
 戦闘開始時、自身のHPが25%以上なら、速さが敵より高い時、受けた範囲奥義のダメージと、戦闘中に攻撃を受けた時のダメージを速さの差×3%軽減(最大30%)(巨影の範囲奥義を除く)、かつ、自分が与えるダメージ+5(戦闘前奥義も含む)
 `});
 
-let text_description_rule = `ルール:
-開始すると専用武器が並べられ、5秒後に始まります。
+let text_description_rule = `開始すると専用武器が並べられ、5秒後に始まります。
 
 専用武器の説明文に合う武器を選んでください。
 錬成可能なものは錬成後の文になります。
@@ -325,61 +329,109 @@ function start_game(){
 	vm.db_cards = db_cards // why this tautology is needed?
 	answers=rand_seq(MAX_CHOICE+UNSEEN_ANSWER-1, 1);
 	state.newGame = false;
-	// countdown_to_start(5);
-	countdown_to_start(0);
+	vm.timer_active = true
+	vm.base_time = Date.now()+5000 // measure after the count-down.
+	countdown_to_start(5)
+	// countdown_to_start(0);
 }
 
 function countdown_to_start(duration){
 	if (duration > 0){
 		vm.description = text_description_rule + "  " + duration
-		console.log(duration)
+		// console.log(duration)
 		setTimeout(countdown_to_start, 1000, duration-1)
 	}else{
+		vm.message = "スタート！ 残り: " + (10-correct_count)
 		question()
+		vm.setTimeout_ID = setTimeout(vm.timer_callback, 50)
 	}
 }
 
-function correct_answer(){
+function correct_answer(message_part){
+	if (temporary_disabled){
+		temporary_disabled.card.disabled = false
+		temporary_disabled = null
+	}
+
 	correct_count += 1
 	if (correct_count < 10){
+		vm.message = message_part + "残り: " + (10-correct_count)
 		answers.shift()
 		question()
-   	}else{
-	   	console.log("clear")
-   	}
+	}else{
+		vm.timer_value = Date.now() - vm.base_time
+		vm.message = message_part + "GAME CLEAR!"
+		clearTimeout(vm.setTimeout_ID)
+		vm.setTimeout_ID = null
+	}
 }
 
 function wrong_answer(clicked_card){
-   if (temporary_disabled){
-	answers.push(answers.shift())
-	question()
-	temporary_disabled.card.disabled = false
-	temporary_disabled = null
-   }else{
-	temporary_disabled = clicked_card
-	temporary_disabled.card.disabled = true
-   }
+	if (temporary_disabled){
+		vm.message = "不正解(2回目):" + clicked_card.card.name + " 残り: " + (10-correct_count)
+		temporary_disabled.card.disabled = false
+		temporary_disabled = null
+		answers.push(answers.shift())
+		question()
+	}else{
+		vm.message = "不正解(1回目):" + clicked_card.card.name + " 残り: " + (10-correct_count)
+		temporary_disabled = clicked_card
+		temporary_disabled.card.disabled = true
+	}
 }
 
 function question(){
-	vm.description = vm.db_cards[answers[0]].description
+	// vm.description = vm.db_cards[answers[0]].description
+	vm.question_start_time = Date.now()
 }
 
 const app = Vue.createApp({
-  methods: {
-	click_description(){
-		if(state.newGame){
-			start_game();
-		}else{
-			console.log("clicked but ignored");
+	methods: {
+		click_description(){
+			if(state.newGame){
+				start_game();
+			}else{
+				console.log("clicked but ignored");
+			}
+		},
+		timer_callback(){
+			now = Date.now()
+			if(this.timer_active){
+				this.timer_value = now - this.base_time
+				this.setTimeout_ID = setTimeout(this.timer_callback, 49)
+				// console.log(this.setTimeout_ID)
+			}
+			vm.description = vm.db_cards[answers[0]].description.slice(0, Math.floor((now - vm.question_start_time)/30))
+		}
+	},
+	data() {
+		return ({
+			message: "ルール説明",
+			db_cards: db_cards,
+			description: text_description_rule,
+			MAX_CHOICE: MAX_CHOICE,
+			base_time: Number.MAX_SAFE_INTEGER,
+			timer_active: false,
+			timer_value: 0,
+			setTimeout_ID: null
+		})
+	},
+	computed: {
+		timer: function(){
+			let mills
+
+			if(this.timer_value <= 0){
+				return ("0.000")
+			}else{
+				return Math.floor(this.timer_value/1000).toString() + "." + this.timer_value.toString().slice(-3)
+			}
 		}
 	}
-  },
-  data() {return ({db_cards: db_cards, description: text_description_rule, MAX_CHOICE: MAX_CHOICE})}
-});
+})
+
 app.component('card-text', {
 	props: ['card'], 
-	template: `<div @click='choose("{{card.name}}")'>{{card.name}}</div>`,
+	template: `<div @click='choose("{{card.name}}")' class="card">{{card.name}}</div>`,
 	methods: {
 		choose(name){
 			if (state.newGame){
@@ -388,16 +440,16 @@ app.component('card-text', {
 				if (this.card.name == "なし"){
 					for(let i=1; i<MAX_CHOICE; i++){
 						if(vm.db_cards[i].description == db_cards[answers[0]].description) {
-	   						wrong_answer(this)
-	   						return;
-	   					}
-	   				}
-	   				// no "return" executed 
-					correct_answer()
+							wrong_answer(this)
+							return;
+						}
+					}
+					// no "return" executed 
+					correct_answer("正解！" + db_cards[answers[0]].name + "(未配置) ")
 				}else{
 					if(this.card.description == db_cards[answers[0]].description) {
 						this.card.disabled = true
-						correct_answer()
+						correct_answer("正解！" + db_cards[answers[0]].name + " ")
 					}else{
 						wrong_answer(this)
 					}
@@ -405,7 +457,7 @@ app.component('card-text', {
 				}
 			}
 		}
-  	},
+	},
 })
 const vm = app.mount('#app');
 </script>
