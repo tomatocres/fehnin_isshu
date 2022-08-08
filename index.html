@@ -7,9 +7,13 @@
 #cards{
 	display: grid;
 	grid-template-columns: repeat(6, 1fr);
+	max-width: 800px;
 }
 .disabled{
 	background-color: silver; 
+}
+.failed{
+	color: #cc0000; 
 }
 .card{
 	border: 1px solid #cccccc;
@@ -23,15 +27,16 @@
 </style>
 </head>
 <body>
-  <div id="app">
-	  <div id="controller">
-		{{message}} {{timer}}<button @click="reset();" align="Right">Reset</button>
-	  </div>
-	  <pre id="description" @click="click_description()">{{description}}</pre>
-	  <div id="cards">
-		  <card-text v-for="card in db_cards.slice(0,MAX_CHOICE)"  :card="card" :class="{disabled: card.disabled}" />
-	  </div>
-  </div>
+	<div id="app">
+		<div id="controller">
+		{{message}} {{timer}}
+		<button @click="reset();" align="Right">Reset</button>
+		</div>
+			<pre id="description" @click="click_description()">{{description}}</pre>
+			<div id="cards">
+				<card-text v-for="card in db_cards.slice(0,VISIBLE_CARDS)"  :card="card" :class="{disabled: card.disabled, failed: card.failed}" />
+		</div>
+	</div>
   <!--
 	  <script src="https://unpkg.com/vue@next"></script>
 <script src="https://unpkg.com/vue@2.5.17"></script>
@@ -70,8 +75,7 @@ db_skill.push({name:'戦神と戯神の気紛れ', description:`奥義が発動�
 戦闘開始時、自身のHPが25%以上なら、攻撃+6、敵の攻撃-6
 【弱点露呈】敵から受けた攻撃のダメージ+10
 `});  
-db_skill.push({name:'鎧好きの堅槍', description:`
-戦闘開始時、自身のHPが25%以上なら、戦闘中、敵の攻撃、守備-5、敵は追撃不可
+db_skill.push({name:'鎧好きの堅槍', description:`戦闘開始時、自身のHPが25%以上なら、戦闘中、敵の攻撃、守備-5、敵は追撃不可
 敵から攻撃された時、または、戦闘開始時、敵のHPが75%以上の時、戦闘中、敵の攻撃、守備-5、かつ、戦闘中、敵の攻撃が、戦闘開始時の敵の攻撃×〇%減少
 〇の値は、戦闘開始時の最大HP、攻撃、速さ、守備、魔防のうち、自分が敵より1以上高い種類数×5+10
 `});  
@@ -149,8 +153,7 @@ db_skill.push({name:'滅亡の霜雪', description:`射程2の敵に、敵の守
 奥義が発動しやすい(発動カウント-1)
 敵から攻撃された時、または、戦闘開始時、敵のHPが75%以上の時、戦闘中、自身の攻撃+6敵の攻撃-6、自分、敵､ともに追撃不可、自分が最初に与えるダメージ+敵の魔防の40%
 `});  
-db_skill.push({name:'氷槍マルテ', description:`
-ターン開始時、神竜の花を自身に使用した回数が10回以上なら、攻撃、守備+6(1ターン)
+db_skill.push({name:'氷槍マルテ', description:`ターン開始時、神竜の花を自身に使用した回数が10回以上なら、攻撃、守備+6(1ターン)
 敵から攻撃された時、または、戦闘開始時、敵のHPが75%以上の時、戦闘中、攻撃、速さ、守備、魔防が神竜の花を自身に使用した回数によって最大+5上昇(使用した回数が1回以上なら+5、0回なら+4)、かつ、神竜の花を自身に使用した回数が5回以上なら、敵の奥義発動カウント変動量-1(同系統効果複数時、最大値適用)
 周囲3マス以内に味方がいる時、戦闘中、攻撃、速さ、守備、魔防+4、かつ、攻撃、速さ、守備、魔防が自分が受けている攻撃、速さ、守備、魔防の強化の値だけ上昇(能力値ごとに計算)
 `});  
@@ -221,19 +224,16 @@ db_skill.push({name:'二羽の魔兎の揺籃', description:`奥義が発動し�
 周囲2マス以内の味方の、周囲2マス以内に移動可能
 自分から攻撃した時、または、周囲2マス以内に味方がいる時、戦闘中、攻撃+4、速さ+6、自分の攻撃+(自分の奥義発動カウントの最大値×3)
 `});  
-db_skill.push({name:'蒼穹の細槍', description:`
-自分から攻撃した時、または、周囲2マス以内に味方がいる時、戦闘中、攻撃、速さ+5、自分が与えるダメージ+7
+db_skill.push({name:'蒼穹の細槍', description:`自分から攻撃した時、または、周囲2マス以内に味方がいる時、戦闘中、攻撃、速さ+5、自分が与えるダメージ+7
 応援、移動系補助(体当たり、引き戻し、回り込み等)を使用した時、または自分に使用された時、自分と相手の攻撃、速さ+6(1ターン)、かつ、HP10回復
 戦闘開始時、敵のHPが75%以上なら、戦闘中、攻撃、速さ+5
 `});  
-db_skill.push({name:'颯弓ミュルグレ', description:`
-飛行特効
+db_skill.push({name:'颯弓ミュルグレ', description:`飛行特効
 自分から攻撃した時、または、周囲2マス以内に味方がいる時、戦闘中、攻撃、速さ+5、かつ、速さが敵より5以上高い時、敵は反撃不可
 戦闘開始時、自身のHPが25%以上なら、戦闘中、攻撃、速さ+5、戦闘中、最初に与えるダメージ+速さの15%
 戦闘開始時、自身のHPが25%以上なら、自分から攻撃した時、戦闘中に攻撃していれば、戦闘後に敵と、その周囲2マスの敵に7ダメージ
 `});  
-db_skill.push({name:'慈母の霊杖', description:`
-敵は反撃不可
+db_skill.push({name:'慈母の霊杖', description:`敵は反撃不可
 自分から攻撃した時、戦闘中、攻撃、速さ+4
 戦闘中に攻撃していれば、戦闘後に敵と、その周囲2マスの敵に反撃不可の状態異常を付与(敵の次回行動終了まで)
 自分の周囲4マス以内で、再移動を発動した敵に【再移動制限】を付与
@@ -270,20 +270,17 @@ db_skill.push({name:'ガーベラの斧', description:`速さ+3
 db_skill.push({name:'アキメネスの花冠', description:`奥義が発動しやすい(発動カウント-1)
 自分を除く自軍内の移動タイプの種類数によって異なる効果を発動(・1以上なら、周囲3マス以内の敵は、戦闘中、攻撃、守備、魔防-5・2以上なら、さらに自分は戦闘中、最初に受けた攻撃のダメージを30%軽減・3以上なら、さらに自分と周囲3マス以内の味方は、戦闘中、自分の攻撃でダメージを与えた時、5回復)(与えたダメージが0でも効果は発動)
 `});  
-db_skill.push({name:'純理の書', description:`
-ターン開始時、周囲2マス以内に味方がいる時、自分と周囲2マス以内の味方の守備、魔防+6(1ターン)
+db_skill.push({name:'純理の書', description:`ターン開始時、周囲2マス以内に味方がいる時、自分と周囲2マス以内の味方の守備、魔防+6(1ターン)
 戦闘開始時、自身のHPが25％以上なら、戦闘中、攻撃、速さ、守備、魔防+4
 自分から攻撃した時、または、周囲2マス以内に味方がいる時、戦闘中、攻撃、速さ、守備、魔防+4、かつ、自分が強化を受けていれば、戦闘中、敵の攻撃、魔防が自分が受けている守備と魔防の強化の合計値の60%だけ減少
 `});  
-db_skill.push({name:'ヴェルダンの荒弓', description:`
-飛行特効
+db_skill.push({name:'ヴェルダンの荒弓', description:`飛行特効
 奥義が発動しやすい(発動カウント-1)
 自分から攻撃した時、または、周囲1マス以内に味方がいない時、戦闘中、攻撃、速さ+5
 戦闘開始時、自身のHPが25%以上なら、戦闘中、攻撃、速さ+5
 自分から攻撃した時、自分の速さ-敵の速さの値によって異なる効果を発動(・3以上なら、自分は絶対追撃・7以上なら、さらに追撃可能なら自分の追撃の直後に追撃を行う)
 `});  
-db_skill.push({name:'疾風の暗器', description:`
-戦闘中、敵が受けている強化の合計値を攻撃に加算
+db_skill.push({name:'疾風の暗器', description:`戦闘中、敵が受けている強化の合計値を攻撃に加算
 戦闘開始時、敵のHPが75%以上の時、または、敵が【有利な状態】の時、戦闘中、攻撃、速さ+5
 【暗器(7)】効果
 【有利な状態】「1ターン」の効果全般(強化、移動+1、敵弱化ダメージ+等)
@@ -292,7 +289,7 @@ db_skill.push({name:'疾風の暗器', description:`
 戦闘開始時、自身のHPが25%以上なら、速さが敵より高い時、受けた範囲奥義のダメージと、戦闘中に攻撃を受けた時のダメージを速さの差×3%軽減(最大30%)(巨影の範囲奥義を除く)、かつ、自分が与えるダメージ+5(戦闘前奥義も含む)
 `});
 
-let text_description_rule = `開始すると専用武器が並べられ、5秒後に始まります。
+const text_description_rule = `開始すると専用武器が並べられ、5秒後に始まります。
 
 専用武器の説明文に合う武器を選んでください。
 錬成可能なものは錬成後の文になります。
@@ -302,12 +299,15 @@ let text_description_rule = `開始すると専用武器が並べられ、5秒�
 10回正解するとクリアです。 
 
 `
-let answers=[]
-let db_cards=[]
-let state = {newGame: true}
-let visible_chars = 0
+
 const MAX_CHOICE = 24
 const UNSEEN_ANSWER = 2
+
+let answers=[]
+let db_cards=[]
+let wrong_log = []
+let state = {newGame: true, clear: false}
+let visible_chars = 0
 
 let correct_count = 0
 let temporary_disabled = null
@@ -327,6 +327,7 @@ function start_game(){
 	for(let i=0; i<MAX_CHOICE+UNSEEN_ANSWER-1; i++){
 		db_cards.push(db_skill[randtmp[i]]);
 		db_cards[i].disabled = false
+		db_cards[i].failed = false
 	}
 	vm.db_cards = db_cards // why this tautology is needed?
 	answers=rand_seq(MAX_CHOICE+UNSEEN_ANSWER-1, 1);
@@ -341,9 +342,9 @@ function countdown_to_start(duration){
 	if (duration > 0){
 		vm.description = text_description_rule + "  " + duration
 		// console.log(duration)
-		setTimeout(countdown_to_start, 1000, duration-1)
+		vm.setTimeout_ID = setTimeout(countdown_to_start, 1000, duration-1)
 	}else{
-		vm.message = "スタート！ 残り: " + (10-correct_count)
+		vm.message = "スタート！ 残り:" + (10-correct_count) + "問"
 		question()
 		vm.setTimeout_ID = setTimeout(vm.timer_callback, 50)
 	}
@@ -357,15 +358,27 @@ function correct_answer(message_part){
 
 	correct_count += 1
 	if (correct_count < 10){
-		vm.message = message_part + "残り: " + (10-correct_count)
+		vm.message = message_part + "残り:" + (10-correct_count) + "問"
 		answers.shift()
 		question()
 	}else{
-		vm.timer_value = Date.now() - vm.base_time
-		vm.message = message_part + "GAME CLEAR!"
-		clearTimeout(vm.setTimeout_ID)
-		vm.setTimeout_ID = null
+		gameclear(message_part)
 	}
+}
+
+function gameclear(message_part){
+	clearTimeout(vm.setTimeout_ID)
+	vm.setTimeout_ID = null
+	vm.timer_value = Date.now() - vm.base_time
+	vm.message = message_part + "GAME CLEAR!"
+
+	vm.VISIBLE_CARDS = MAX_CHOICE + UNSEEN_ANSWER
+	
+	for (let card_no of wrong_log){
+		vm.db_cards[card_no].failed = true
+	}
+	
+	state.clear = true
 }
 
 function wrong_answer(clicked_card){
@@ -373,6 +386,7 @@ function wrong_answer(clicked_card){
 		vm.message = "不正解(2回目):" + clicked_card.card.name + " 残り: " + (10-correct_count)
 		temporary_disabled.card.disabled = false
 		temporary_disabled = null
+		wrong_log.push(answers[0])
 		answers.push(answers.shift())
 		question()
 	}else{
@@ -400,10 +414,23 @@ const app = Vue.createApp({
 			now = Date.now()
 			if(this.timer_active){
 				this.timer_value = now - this.base_time
-				this.setTimeout_ID = setTimeout(this.timer_callback, 49)
+				this.setTimeout_ID = setTimeout(this.timer_callback, 47)
 				// console.log(this.setTimeout_ID)
 			}
 			vm.description = vm.db_cards[answers[0]].description.slice(0, Math.floor((now - vm.question_start_time)/30))
+		},
+		reset(){
+			answers=[]
+			db_cards=[]
+			state = {newGame: true, clear: false}
+			visible_chars = 0
+
+			correct_count = 0
+			temporary_disabled = null
+
+			clearTimeout(vm.setTimeout_ID)
+			Object.assign(this.$data, app._component.data())
+			
 		}
 	},
 	data() {
@@ -411,7 +438,7 @@ const app = Vue.createApp({
 			message: "ルール説明",
 			db_cards: db_cards,
 			description: text_description_rule,
-			MAX_CHOICE: MAX_CHOICE,
+			VISIBLE_CARDS: MAX_CHOICE,
 			base_time: Number.MAX_SAFE_INTEGER,
 			timer_active: false,
 			timer_value: 0,
@@ -436,9 +463,9 @@ app.component('card-text', {
 	template: `<div @click='choose("{{card.name}}")' class="card">{{card.name}}</div>`,
 	methods: {
 		choose(name){
-			if (state.newGame){
-				start_game();
-			}else if(! this.card.disabled){
+			if (state.clear){
+				vm.description = this.card.description
+			}else if(! this.card.disabled && state.newGame == false){
 				if (this.card.name == "なし"){
 					for(let i=1; i<MAX_CHOICE; i++){
 						if(vm.db_cards[i].description == db_cards[answers[0]].description) {
