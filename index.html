@@ -4,10 +4,34 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <style>
+body{
+	background-color: #000000;
+}
+#app{
+	max-width: 720px;
+	
+}
+#button{
+	float: right;
+}
+#description{
+	height: 18em;
+	overflow-y: scroll;
+	white-space: pre-wrap;
+	border: 5px outset #c6bd5d;
+	border-radius: 6px;
+	padding: 2px;
+	background-color: #fff9e9;
+	font-size: 150%;
+	margin: 0;
+}
+#controller{
+	background-color: #fff9e9;
+}
+
 #cards{
 	display: grid;
 	grid-template-columns: repeat(6, 1fr);
-	max-width: 800px;
 }
 .disabled{
 	background-color: silver; 
@@ -16,13 +40,11 @@
 	color: #cc0000; 
 }
 .card{
-	border: 1px solid #cccccc;
-	height: 3em;
-}
-#description{
-	height: 300px;
-	white-space: pre-wrap;
-	border: 1px solid #cccccc;
+	height: 4em;
+	border: 3px outset #c6bd5d;
+	background-color: #fff9e9;
+	font-size: 120%;
+	margin: 1px;
 }
 </style>
 </head>
@@ -30,9 +52,9 @@
 	<div id="app">
 		<pre id="description" @click="click_description()">{{description}}</pre>
 		<div id="controller" align="Left">
+		<button id='button' @click="click_button();">Reset</button>
 		{{message}} {{timer}}
 		</div>
-		<div align="Right"><button @click="reset();" align="Right">Reset</button></div>
 		<div id="cards">
 				<card-text v-for="card in db_cards.slice(0,VISIBLE_CARDS)"  :card="card" :class="{disabled: card.disabled, failed: card.failed}" />
 		</div>
@@ -54,6 +76,8 @@ const text_description_rule = `開始すると専用武器が並べられ、5秒
 
 正解する、または2回間違えると次の武器に進みます。
 10回正解するとクリアです。 
+
+【この説明枠をタップしてスタート】
 `
 
 const MAX_CHOICE = 24
@@ -109,7 +133,6 @@ function start_game(){
 	vm.db_cards = db_cards
 	
 	answers=rand_seq(total_cards, 1);
-	state.newGame = false;
 	vm.timer_active = true
 	vm.base_time = Date.now()+5000 // measure after the count-down.
 	countdown_to_start(5)
@@ -122,6 +145,7 @@ function countdown_to_start(duration){
 		// console.log(duration)
 		vm.setTimeout_ID = setTimeout(countdown_to_start, 1000, duration-1)
 	}else{
+		state.newGame = false;
 		vm.message = "スタート！ 残り:" + (10-correct_count) + "問"
 		question()
 		vm.setTimeout_ID = setTimeout(vm.timer_callback, 50)
@@ -197,7 +221,7 @@ const app = Vue.createApp({
 			}
 			vm.description = vm.db_cards[answers[0]].description.slice(0, Math.floor((now - vm.question_start_time)/30))
 		},
-		reset(){
+		click_button(){
 			answers=[]
 			db_cards=[]
 			state = {newGame: true, clear: false}
